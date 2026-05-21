@@ -36,7 +36,10 @@
       "Bash(du -sh negev.jpg)",
       "Bash(curl -sL \"https://upload.wikimedia.org/wikipedia/commons/0/0f/Israel-2013-Jaffa_02.jpg\" -o jaffa.jpg --max-time 20)",
       "Bash(du -sh jaffa.jpg)",
-      "Bash(python3 -)"
+      "Bash(python3 -)",
+      "Bash(git -C /Users/maysaban/GeoScope add vercel.json)",
+      "Bash(git -C /Users/maysaban/GeoScope commit -m \"fix\\(vercel\\): remove secret reference from vercel.json\")",
+      "Bash(git -C /Users/maysaban/GeoScope push)"
     ]
   }
 }

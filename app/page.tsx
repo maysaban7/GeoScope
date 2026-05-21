@@ -7,13 +7,13 @@ import type { LocateResponse } from "@/lib/schema";
 
 type Status = "idle" | "loading" | "done" | "error";
 
-const EXAMPLES: { label: string; src: string }[] = [
-  { label: "מכתש רמון · נגב", src: "/examples/negev.jpg" },
-  { label: "יפו · גוש דן", src: "/examples/jaffa.jpg" },
-  { label: "חיפה", src: "/examples/haifa.jpg" },
-  { label: "הכנרת · גליל", src: "/examples/kinneret.jpg" },
-  { label: "רמת הגולן", src: "/examples/golan.jpg" },
-  { label: "תל אביב", src: "/examples/telaviv.jpg" },
+const EXAMPLES: { label: string; src: string; resultSrc: string }[] = [
+  { label: "מכתש רמון · נגב", src: "/examples/negev.jpg", resultSrc: "/examples/results/negev.json" },
+  { label: "יפו · גוש דן", src: "/examples/jaffa.jpg", resultSrc: "/examples/results/jaffa.json" },
+  { label: "חיפה", src: "/examples/haifa.jpg", resultSrc: "/examples/results/haifa.json" },
+  { label: "הכנרת · גליל", src: "/examples/kinneret.jpg", resultSrc: "/examples/results/kinneret.json" },
+  { label: "רמת הגולן", src: "/examples/golan.jpg", resultSrc: "/examples/results/golan.json" },
+  { label: "תל אביב", src: "/examples/telaviv.jpg", resultSrc: "/examples/results/telaviv.json" },
 ];
 
 function encodeResult(r: LocateResponse): string {
@@ -78,13 +78,23 @@ export default function Home() {
     }
   }
 
-  async function handleExampleClick(src: string) {
-    const res = await fetch(src);
-    const blob = await res.blob();
-    const file = new File([blob], src.split("/").pop() ?? "example.jpg", {
-      type: blob.type || "image/jpeg",
-    });
-    handleFile(file);
+  async function handleExampleClick(src: string, resultSrc: string) {
+    setPreviewUrl(src);
+    setStatus("loading");
+    setResult(null);
+    setErrorMessage(null);
+    window.location.hash = "";
+    // load pre-baked result — no API call needed
+    try {
+      const res = await fetch(resultSrc);
+      const data = (await res.json()) as LocateResponse;
+      setResult(data);
+      setStatus("done");
+      window.location.hash = `r=${encodeResult(data)}`;
+    } catch {
+      setErrorMessage("שגיאה בטעינת הדגמה");
+      setStatus("error");
+    }
   }
 
   async function copyShareUrl() {
@@ -139,7 +149,7 @@ export default function Home() {
                   {EXAMPLES.map((ex) => (
                     <button
                       key={ex.src}
-                      onClick={() => handleExampleClick(ex.src)}
+                      onClick={() => handleExampleClick(ex.src, ex.resultSrc)}
                       className="rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-700 hover:border-indigo-400 transition-colors"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
