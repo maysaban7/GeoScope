@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --no-src-dir --eslint --import-alias \"@/*\" --use-npm --yes --no-turbopack)",
+      "Bash(rm -rf /tmp/geoscope-scaffold)",
+      "Bash(npx --yes create-next-app@latest /tmp/geoscope-scaffold --typescript --tailwind --app --no-src-dir --eslint --import-alias \"@/*\" --use-npm --yes --no-turbopack)",
+      "Bash(ls -la /tmp/geoscope-scaffold/ && echo \"---\" && ls /Users/maysaban/GeoScope/)",
+      "Bash(mv /tmp/geoscope-scaffold/.gitignore /Users/maysaban/GeoScope/.gitignore)",
+      "Bash(rmdir /tmp/geoscope-scaffold)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(git -C /Users/maysaban/GeoScope init -b main)",
+      "Bash(git -C /Users/maysaban/GeoScope add .)",
+      "Bash(git -C /Users/maysaban/GeoScope status --short)"
+    ]
+  }
+}
