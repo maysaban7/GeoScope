@@ -8,10 +8,12 @@ import type { LocateResponse } from "@/lib/schema";
 type Status = "idle" | "loading" | "done" | "error";
 
 const EXAMPLES: { label: string; src: string }[] = [
-  // שים תמונות ישראליות ב-public/examples/ ועדכן את הרשימה הזו
-  // { label: "תל אביב", src: "/examples/tlv.jpg" },
-  // { label: "ירושלים", src: "/examples/jerusalem.jpg" },
-  // { label: "גולן", src: "/examples/golan.jpg" },
+  { label: "מכתש רמון · נגב", src: "/examples/negev.jpg" },
+  { label: "יפו · גוש דן", src: "/examples/jaffa.jpg" },
+  { label: "חיפה", src: "/examples/haifa.jpg" },
+  { label: "הכנרת · גליל", src: "/examples/kinneret.jpg" },
+  { label: "רמת הגולן", src: "/examples/golan.jpg" },
+  { label: "תל אביב", src: "/examples/telaviv.jpg" },
 ];
 
 function encodeResult(r: LocateResponse): string {

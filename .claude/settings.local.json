@@ -25,7 +25,18 @@
       "Bash(echo \"canvas_available=$?\")",
       "Bash(convert --version)",
       "Bash(python3 -c \"from PIL import Image; print\\('PIL ok'\\)\")",
-      "Bash(git -C /Users/maysaban/GeoScope add -A)"
+      "Bash(git -C /Users/maysaban/GeoScope add -A)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(git -C /Users/maysaban/GeoScope remote -v)",
+      "WebSearch",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "Bash(mkdir -p /Users/maysaban/GeoScope/public/examples)",
+      "Bash(curl -sL \"https://upload.wikimedia.org/wikipedia/commons/a/a9/Israel-2013-Aerial_00-Negev-Makhtesh_Ramon.jpg\" -o negev.jpg --max-time 20)",
+      "Bash(du -sh negev.jpg)",
+      "Bash(curl -sL \"https://upload.wikimedia.org/wikipedia/commons/0/0f/Israel-2013-Jaffa_02.jpg\" -o jaffa.jpg --max-time 20)",
+      "Bash(du -sh jaffa.jpg)",
+      "Bash(python3 -)"
     ]
   }
 }
