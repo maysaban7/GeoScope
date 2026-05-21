@@ -39,7 +39,8 @@
       "Bash(python3 -)",
       "Bash(git -C /Users/maysaban/GeoScope add vercel.json)",
       "Bash(git -C /Users/maysaban/GeoScope commit -m \"fix\\(vercel\\): remove secret reference from vercel.json\")",
-      "Bash(git -C /Users/maysaban/GeoScope push)"
+      "Bash(git -C /Users/maysaban/GeoScope push)",
+      "Bash(vercel --prod --yes)"
     ]
   }
 }

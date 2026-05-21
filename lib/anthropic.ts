@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { LocateResponseSchema, type LocateResponse } from "./schema";
 import { SYSTEM_PROMPT } from "./prompts";
+import type { SupportedMediaType } from "./types";
 
 const MODEL = "claude-sonnet-4-6";
 
@@ -16,13 +17,7 @@ function getClient(): Anthropic {
   return client;
 }
 
-export type SupportedMediaType =
-  | "image/jpeg"
-  | "image/png"
-  | "image/webp"
-  | "image/gif";
-
-export async function locateImage(
+export async function locateWithClaude(
   base64: string,
   mediaType: SupportedMediaType,
 ): Promise<LocateResponse> {

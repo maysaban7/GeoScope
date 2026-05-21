@@ -1,17 +1,12 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
-import { locateImage, type SupportedMediaType } from "@/lib/anthropic";
+import { locateImage } from "@/lib/llm";
+import { ALLOWED_MEDIA_TYPES, type SupportedMediaType } from "@/lib/types";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
 const MAX_BYTES = 10 * 1024 * 1024;
-const ALLOWED_TYPES: SupportedMediaType[] = [
-  "image/jpeg",
-  "image/png",
-  "image/webp",
-  "image/gif",
-];
 
 export async function POST(req: Request) {
   let form: FormData;
@@ -32,10 +27,10 @@ export async function POST(req: Request) {
     );
   }
 
-  if (!ALLOWED_TYPES.includes(file.type as SupportedMediaType)) {
+  if (!ALLOWED_MEDIA_TYPES.includes(file.type as SupportedMediaType)) {
     return NextResponse.json(
       {
-        error: `unsupported media type: ${file.type || "unknown"}. supported: ${ALLOWED_TYPES.join(", ")}`,
+        error: `unsupported media type: ${file.type || "unknown"}. supported: ${ALLOWED_MEDIA_TYPES.join(", ")}`,
       },
       { status: 415 },
     );
@@ -52,8 +47,11 @@ export async function POST(req: Request) {
   const base64 = buf.toString("base64");
 
   try {
-    const result = await locateImage(base64, file.type as SupportedMediaType);
-    return NextResponse.json(result);
+    const { result, provider } = await locateImage(
+      base64,
+      file.type as SupportedMediaType,
+    );
+    return NextResponse.json({ ...result, provider });
   } catch (err) {
     if (err instanceof ZodError) {
       return NextResponse.json(
