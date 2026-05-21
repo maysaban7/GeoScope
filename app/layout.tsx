@@ -12,6 +12,16 @@ export const metadata: Metadata = {
   title: "GeoScope · גלה איפה צולמה התמונה",
   description:
     "מעלים תמונה — Claude Vision מנתח את הרמזים הויזואליים ומשער איפה בישראל היא צולמה.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "GeoScope",
+  },
+  icons: {
+    apple: "/icon-192.png",
+    icon: "/icon-512.png",
+  },
 };
 
 export default function RootLayout({

@@ -12,7 +12,20 @@
       "Bash(npm run *)",
       "Bash(git -C /Users/maysaban/GeoScope init -b main)",
       "Bash(git -C /Users/maysaban/GeoScope add .)",
-      "Bash(git -C /Users/maysaban/GeoScope status --short)"
+      "Bash(git -C /Users/maysaban/GeoScope status --short)",
+      "Bash(git -C /Users/maysaban/GeoScope commit -m ' *)",
+      "Bash(git -C /Users/maysaban/GeoScope log --oneline -5)",
+      "Bash(sleep 5 && cat /tmp/geoscope-dev.log 2>&1 | head -30 && echo \"---\" && lsof -i :3000 2>&1 | head -5)",
+      "Bash(curl -sS -o /tmp/geoscope-home.html -w \"HTTP %{http_code}\\\\n\" http://localhost:3001/)",
+      "Read(//tmp/**)",
+      "Bash(curl -sS -X POST http://localhost:3001/api/locate -w \"\\\\nHTTP %{http_code}\\\\n\")",
+      "Bash(curl -sS -X POST http://localhost:3001/api/locate -F \"image=@/dev/null;type=image/jpeg\" -w \"\\\\nHTTP %{http_code}\\\\n\")",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(node -e ' *)",
+      "Bash(echo \"canvas_available=$?\")",
+      "Bash(convert --version)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(git -C /Users/maysaban/GeoScope add -A)"
     ]
   }
 }
